@@ -2,19 +2,19 @@ import numpy as np
 
 # Compute the cost for linear regression of using theta as the parameter
 # for linear regression to fit the data points in X and y
-def computeMeanSquaredErrorCost(X, y, theta):
+def meanSquaredErrorCost(X, y, theta):
     m = y.size
     J = (1/(2*m)) * np.sum(np.power((X.dot(theta) - y), 2))
     return J
 
 # Performs gradient descent to learn theta by taking num_iters gradient
 # steps with learning rate alpha
-def gradientDescent(X, y, theta, alpha, num_iters):
+def linearRegressionGradientDescent(X, y, theta, alpha, num_iters):
     m = y.size
     J_history = np.zeros((num_iters, 1))
     for i in range(num_iters):
         theta = theta - alpha * (1/m) * X.transpose().dot((X.dot(theta) - y))
-        J_history[i] = computeMeanSquaredErrorCost(X, y, theta)
+        J_history[i] = meanSquaredErrorCost(X, y, theta)
     return [theta, J_history]
 
 # Computes the closed-form solution to linear regression using the normal
