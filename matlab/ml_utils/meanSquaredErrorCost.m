@@ -1,6 +1,6 @@
-function J = computeMeanSquaredErrorCost(X, y, theta)
-  %COMPUTEMEANSQUAREDERRORCOST Compute cost for linear regression
-  %   J = COMPUTEMEANSQUAREDERRORCOST(X, y, theta) computes the cost of using
+function J = meanSquaredErrorCost(X, y, theta)
+  %MEANSQUAREDERRORCOST Compute cost for linear regression
+  %   J = MEANSQUAREDERRORCOST(X, y, theta) computes the cost of using
   %   theta as the parameter for linear regression to fit the data points in X
   %   and y
 
