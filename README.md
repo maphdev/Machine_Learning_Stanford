@@ -1,16 +1,16 @@
-# Machine_Learning_Stanford
+# Machine Learning Stanford
 Work done as part of the Machine Learning course given by Andrew Ng on Coursera.
 
 Ex1 :
 - meanSquaredErrorCost
-- linearRegressionGradientDescent (à voir)
+- linearRegressionGradientDescent
 - normalizeFeature
 - normalEquation
 
 Ex 2 :
-- sigmoid
-- logLossCost
+- sigmoid   ok
+- logLossCost   ok
 - logLossRegularizedCost
-- logisticRegressionGradientDescent
-- predictLogisticRegression
+- logisticRegressionGradientDescent ok
+- predictLogisticRegression ok
 - mapPolynomialFeature

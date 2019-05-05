@@ -31,3 +31,49 @@ def normalizeFeature(X):
     sigma = X.std(axis=0, ddof=1)
     X_norm = np.divide(X-mu, sigma)
     return [X_norm, mu, sigma]
+
+# Computes the sigmoid of z.
+def sigmoid(z):
+    return 1 / (1+np.exp(-z))
+
+# Computes the cost of using theta as the parameter for logistic regression
+# and the gradient of the cost w.r.t. to the parameters.
+# Possibility to get the regularized cost.
+def logLossCost(X, y, theta, regularized=False, lbd=1):
+    m = y.size
+    z = X.dot(theta)
+    h_x = sigmoid(z)
+    if regularized:
+        J = (1/m)*sum(-y*np.log(h_x)-(1-y)*np.log(1-h_x)) + (lbd/(2*m))*sum(theta[1:]**2)
+    else:
+        J = (1/m)*sum(-y*np.log(h_x)-(1-y)*np.log(1-h_x))
+    return J
+
+# Performs gradient descent to learn theta by taking num_iters gradient steps
+# with learning rate alpha
+# TO DO : regularized version
+def logisticRegressionGradientDescent(X, y, theta, alpha, num_iters):
+    m = y.size
+    J_history = np.zeros((num_iters, 1))
+    for i in range(num_iters):
+        z = X.dot(theta)
+        h_x = sigmoid(z)
+        theta = theta - alpha * (1/m) * X.transpose().dot((h_x - y))
+        #grad = (1/m) * np.sum(np.multiply(h_x - y, X), axis=0)
+        J_history[i] = logLossCost(X, y, theta)
+    return [theta, J_history]
+
+# Predict whether the label is 0 or 1 using learned logistic regression
+# parameters theta
+def predictLogisticRegression(X, theta):
+    h_x = sigmoid(X.dot(theta))
+    return (h_x >= 0.5)
+
+# Maps the two input features to quadratic features
+def mapPolynomialFeature(x1,x2,degree):
+    out = np.ones(len(x1)).reshape(len(x1),1)
+    for i in range(1,degree+1):
+        for j in range(i+1):
+            terms= (x1**(i-j) * x2**j).reshape(len(x1),1)
+            out= np.hstack((out,terms))
+    return out
